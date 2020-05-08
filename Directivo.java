@@ -59,7 +59,7 @@ public class Directivo extends EquipoDirectivo {
                 + "\n"
                 + "Secretario: " + secretario.getNombre() + " " + secretario.getApellidos()
                 + "\n"
-                +"dzsdfdfdsf";
+                +"dzsdfdfdsfsdfdsfdsnfsdnfndsfsf";
     }
 
     //Metodo equals
