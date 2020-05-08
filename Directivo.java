@@ -58,8 +58,7 @@ public class Directivo extends EquipoDirectivo {
                 + "Formación académica: " + despacho
                 + "\n"
                 + "Secretario: " + secretario.getNombre() + " " + secretario.getApellidos()
-                + "\n"
-                +"dzsdfdfdsfsdfdsfdsnfsdnfndsfsf";
+                + "\n";
     }
 
     //Metodo equals
