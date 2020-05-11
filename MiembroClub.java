@@ -96,12 +96,8 @@ public abstract class MiembroClub implements ISocio,Cloneable {
     }
     
     public void setEdad(int edad) {
-        if(edad<0){
-            System.out.println("La edad no puede ser inferior a 1");
-            this.edad = 1;
-        }
-        if(edad < 18){
-            System.out.println("El cuerpo tecnico solo puede estar formado por personas mayores de edad.");
+        if(edad<18){
+            System.out.println("Ningún miembro de nuestro club puede ser menor de edad.");
             this.edad = 18;
         }
         else{
@@ -116,9 +112,7 @@ public abstract class MiembroClub implements ISocio,Cloneable {
     public void setAccionista(boolean accionista) {
         this.accionista = accionista;
     }
-    
-    
-    
+
     //Metodo toString
     public String toString() {
         return "MIEMBRO CLUB BALONCESTO MONTELLANO:"
@@ -157,7 +151,7 @@ public abstract class MiembroClub implements ISocio,Cloneable {
 
     //Metodos implementados
     //Borrar miembro:Borra los datos de un miembro del club ya existente
-    public void darDeBaja() {
+    public void darDeBaja() { 
         nombre = "";
         apellidos = "";
         edad = 0;

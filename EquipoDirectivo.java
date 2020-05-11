@@ -34,15 +34,11 @@ public abstract class EquipoDirectivo extends MiembroClub {
     }
 
     public void setTelefono(int telefono) {
+        if(telefono<600000000){
+            System.out.println("Telefono incorrecto");
+            this.telefono = 600000000;
+        }
         this.telefono = telefono;
-    }
-
-    public Fecha getFechaAltaClub() {
-        return fechaAltaClub;
-    }
-
-    public void setFechaAltaClub(Fecha fechaAltaClub) {
-        this.fechaAltaClub = fechaAltaClub;
     }
 
     //Metodo toString
@@ -79,5 +75,19 @@ public abstract class EquipoDirectivo extends MiembroClub {
         }
     }
     public abstract void pedirVacaciones();
+    
+    public void presentarDimision(String motivo){
+        System.out.println("Como miembro del equipo directivo del club, presento mi dimisión irrevocable.");
+        System.out.println("Muchos se preguntarán porque, a continuación muestro el motivo: "+motivo);
+        super.setNombre(" ");
+        super.setApellidos(" ");
+        super.setDni(" ");
+        super.setSalario(0);
+        super.setFechaAltaClub(Fecha.ahora());
+        correoElectronico = " ";
+        telefono = 0;
+        
+    }
 
 }
+ 

@@ -14,6 +14,7 @@ public class Directivo extends EquipoDirectivo {
     private int despacho;
     private Secretario secretario;
     private Fecha[] diasVacaciones = new Fecha[5];
+    protected String[] equiposrivales = {"Valencia Basket", "Real Madrid", "Estudiantes", "Unicaja", "Basket Zaragoza", "Real Betis Baloncesto","Los Angeles Lakers","Chigago Bulls","Bilbao Basket","San Antonio Spurs"};
 
     //Constructor
     //Directivos con secretario 
@@ -39,7 +40,10 @@ public class Directivo extends EquipoDirectivo {
     }
 
     public void setDespacho(int despacho) {
-
+        if(despacho < 0){
+            System.out.println("Despacho no existente");
+            this.despacho = 0;
+        }
         this.despacho = despacho;
     }
 
@@ -69,7 +73,7 @@ public class Directivo extends EquipoDirectivo {
     }
 
     //Metodos implementados
-    public void pedirVacaciones() { //IMPLEMENTAR EXCEPCIÓN
+    public void pedirVacaciones() { 
         //Creamos un objeto de la clase gregorian calendar
         Calendar cal = new GregorianCalendar();
         int anyoActual = cal.get(Calendar.YEAR);
@@ -93,29 +97,7 @@ public class Directivo extends EquipoDirectivo {
 
     }
 
-     public void aumentarSalario(int aumento) {
-        double nuevosalario;
-        nuevosalario = super.getSalario() + aumento;
-
-        if (super.getSalario() == 5000) {
-            System.out.println(nombre + " " + apellidos + " ya cobra el máximo permitido para un jugador de nuestro club, que son 5000 €. No podemos aplicarle ningún aumento.");
-        } else if (nuevosalario > 5000) {
-            System.out.println("Con este aumento de salario " + nombre + " " + apellidos + " ha superado el maximo salarial para un jugador de nuestro club. Reajustaremos su salario al máximo permitido");
-            super.setSalario(nuevosalario);
-            System.out.println("Nuevo sueldo: " + nuevosalario + " €");
-        } else {
-            System.out.println("El sueldo de " + nombre + " " + apellidos + " ha sido aumentado. Su nuevo sueldo es: " + nuevosalario + " €");
-        }
-    }
-    public void ficharJugadorOjeado(Ojeador o) {
-        o.getJugadores();
-        String opcionjugador;
-        System.out.println("¿A cual de los jugadores desea fichar?");
-        opcionjugador = IO.readLine();
-
-    }
-
-    public void consultarEstadisticas(Jugador j, int temporada) throws MyException{
+    public void consultarEstadisticas(Jugador j, int temporada) throws MyException {
         Calendar cal = new GregorianCalendar();
         int anyoActual = cal.get(Calendar.YEAR);
         if (temporada >= 1950 && temporada <= anyoActual) {
@@ -124,9 +106,50 @@ public class Directivo extends EquipoDirectivo {
             } else {
                 j.consultarEstadisticasJugador();
             }
-        }else{
+        } else {
             throw new MyException("AÑO INCORRECTO");
         }
+    }
+
+    public static int existeEnArray(String[] array, String stringbuscada) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].equalsIgnoreCase(stringbuscada)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void ficharJugadorOjeado(Ojeador o, String pais, int edadmin, int edadmax) throws MyException {
+        o.InformeJugadoresOjeados(pais, edadmin, edadmax);
+        String nombreJugadorFichado;
+        System.out.println("¿A cual de los jugadores desea fichar?");
+        System.out.println("Introduzca su nombre completo");
+        nombreJugadorFichado = IO.readLine();
+
+        int posicionDeElementoBuscado = existeEnArray(o.jugadoresOjeados, nombreJugadorFichado);
+        if (posicionDeElementoBuscado != -1) {
+            String equipoAleatorio = equiposrivales[new Random().nextInt(equiposrivales.length)];
+            double dineroTraspaso;
+            System.out.println("Este jugador juega actualmente en " + equipoAleatorio);
+            System.out.println("Negociaciones abiertas con " + o.jugadoresOjeados[posicionDeElementoBuscado]);
+            System.out.println("Introduzca la cantidad que pagaremos por el traspaso: ");
+            dineroTraspaso = IO.readNumber();
+            int respuestaDelClub = (int) (Math.random() * 10);  //generamos un booleano aleatorio
+            while (respuestaDelClub > 6) {
+                double nuevaCantidad;
+                System.out.println(equipoAleatorio + " ha rechazado nuestra oferta. Piden una cantidad mayor de dinero.");
+                nuevaCantidad = IO.readNumber();
+                if (nuevaCantidad <= dineroTraspaso) {
+                    throw new MyException("La cantidad ofrecida es inferior a la anterior. El club ha decidido romper las negociaciones");
+                }
+            }
+            System.out.println("FICHADO!! "+o.jugadoresOjeados[posicionDeElementoBuscado]+" es nuevo jugador de nuestro club. "+equipoAleatorio +" ha aceptado nuestra oferta");
+        } else {
+            throw new MyException(nombreJugadorFichado + " no ha sido ojeado por " + o.getNombre() + " " + o.getApellidos() + ". Póngase en contacto con él si tiene especial interés en este jugador.");
+
+        }
+
     }
 
 }

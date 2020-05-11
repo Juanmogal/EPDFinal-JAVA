@@ -24,7 +24,7 @@ public class Fecha {
         setMinutos(minutos);
     
     }
-     //Constructor sin hora,min,seg
+     //Constructor sin hora,min
      public Fecha(int dia, int mes, int anyo){
         setAnyo(anyo);
         setMes(mes);

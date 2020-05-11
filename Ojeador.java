@@ -14,10 +14,10 @@ public class Ojeador extends EquipoDirectivo {
     private int anosDeExperiencia;
 
     private Fecha[] diasVacaciones = new Fecha[3];
-    private String[] apellidos = {"Alocén", "Jímenez", "López", "Gasol", "Rubio", "Llull", "Fernández", "Simón", "Herrera", "Cintado", "Mirotic"};
-    private String[] nombres = {"Carlos", "Juan", "Raul", "Marc", "Ricky", "Sergi", "Rudy", "Krunoslav", "Carlitos", "Gabriel", "Nikola"};
-    public String[] jugadoresOjeados = new String[5];
-
+    private String[] apellidos = {"Alocen", "Jimenez", "Lopez", "Gasol", "Rubio", "Llull", "Fernandez", "Simon", "Herrera", "Cintado", "Mirotic","Oriola", "Hernangomez", "Claver", "Reyes", "Aguilar", "Rabaseda"};
+    private String[] nombres = {"Carlos", "Juan", "Raul", "Marc", "Ricky", "Sergi", "Rudy", "Krunoslav", "Carlitos", "Gabriel", "Nikola","Jaime", "Pablo", "Joan", "Quino", "Juancho", "Willy"};
+    public String[] jugadoresOjeados = new String[5]; // he decidido poner este atributo público(aunque sé que no debe hacerse) para poder utilizarlo en una clase que 
+                                                        //se encuentra al mismo nivel que ella. He buscado formas de  hacerlo sin ponerlo público pero no he sabido implementarlas.
     //Constructor
     public Ojeador(String nombre, String apellidos, String dni, double salario, Fecha fechaAltaClub, int edad,
             String correoElectronico, int telefono, int anosdeExperiencia) {
@@ -69,7 +69,8 @@ public class Ojeador extends EquipoDirectivo {
     public void InformeJugadoresOjeados(String pais, int edadminima, int edadmaxima) {
         System.out.println("Tras varios días ojeando jugadores, " + getNombre() + " " + getApellidos() + " ha considerado que estos son los mejores adaptándose a los filtros establecidos");
         System.out.println("FILTROS ESTABLECIDOS:");
-        System.out.println("País: " + pais + " " + "Edad: " + edadminima + "-" + edadmaxima);
+        System.out.println("País: " + pais);
+        System.out.println("Edad: " + edadminima + "-" + edadmaxima);
 
         ojearJugadores(); //Llamada al metodo que rellenar el array.
 

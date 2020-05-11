@@ -37,16 +37,15 @@ public class Jugador extends MiembroClub implements Comparable {
     private String equipoProcedencia;/*Guardará el equipo anterior en el que ha jugado. 
                                        En el caso de que sea canterano(boolean canterano), el "equipoProcedencia" 
                                        será "Categorias inferiores del Club Baloncesto Montellano"*/
-
+    private int anyosContrato;
     private String rolEquipo;
 
     private double[] estadisticas = new double[3];
 
-    protected String[] equiposrivales = {"Valencia Baket", "Real Madrid", "Estudiantes", "Unicaja", "Basket Zaragoza", "FC Barcelona Lassa", "Bilbao Basket", "Real Betis Baloncesto"};
-
+    
     //Constructor
     public Jugador(String nombre, String apellidos, String dni, double salario, Fecha fechaAltaClub, int edad, int dorsal,
-            String posicion, double altura, double peso, String equipoProcedencia, String rolEquipo) {
+            String posicion, double altura, double peso, String equipoProcedencia,int anyosContrato, String rolEquipo) {
 
         super(nombre, apellidos, dni, salario, fechaAltaClub, edad);
         setDorsal(dorsal);
@@ -160,6 +159,17 @@ public class Jugador extends MiembroClub implements Comparable {
     public String getRolEquipo() {
         return rolEquipo;
     }
+    
+    //Años de contrato
+
+    public int getAnyosContrato() {
+        return anyosContrato;
+    }
+
+    public void setAnyosContrato(int anyosContrato) {
+        this.anyosContrato = anyosContrato;
+    }
+    
 
     public void setRolEquipo(String rolEquipo) {
         //He utilizado el "toLowerCase()" para que aunque introduzca el contenido de la variable en mayusculas o con alguna mayuscula, 
@@ -194,6 +204,8 @@ public class Jugador extends MiembroClub implements Comparable {
                 + "\n"
                 + "posicion: " + posicion
                 + "\n"
+                + "Años de contrato: " + anyosContrato
+                + "\n"
                 + "¿Es canterano? " + canterano
                 + "\n"
                 + "Rol en el equipo: " + rolEquipo
@@ -206,7 +218,7 @@ public class Jugador extends MiembroClub implements Comparable {
     public boolean equals(Object o) {
         Jugador j = (Jugador) o;
         return super.equals(j) && dorsal == j.dorsal && altura == j.altura && canterano == j.canterano && posicion.equalsIgnoreCase(j.posicion)
-                && peso == j.peso && equipoProcedencia.equalsIgnoreCase(j.equipoProcedencia) && rolEquipo.equalsIgnoreCase(j.rolEquipo);
+                && peso == j.peso && equipoProcedencia.equalsIgnoreCase(j.equipoProcedencia) && rolEquipo.equalsIgnoreCase(j.rolEquipo) && anyosContrato == j.anyosContrato;
     }
 
     //Metodo compare to
@@ -228,6 +240,12 @@ public class Jugador extends MiembroClub implements Comparable {
     }
 
     //Metodos implementados 
+    public Fecha fechaFinalizacionContrato(){
+        int anyoFinalizacion = fechaAltaClub.getAnyo()+anyosContrato;
+        Fecha fechaFinalizacionContrato = new Fecha(fechaAltaClub.getDia(),fechaAltaClub.getMes(),anyoFinalizacion,fechaAltaClub.getHora(),fechaAltaClub.getMinutos());
+        return fechaFinalizacionContrato;
+    }
+
     public void aumentarSalario(int aumento) {
         double nuevosalario;
         nuevosalario = super.getSalario() + aumento;

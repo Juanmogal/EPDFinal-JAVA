@@ -12,6 +12,12 @@ public class CuerpoTecnico extends MiembroClub implements Comparable {
     static final String DELEGADODEPISTA = "delegado de pista";
     static final String UTILLERO = "utillero";
     static final String FISIO = "fisio";
+    static final String EQUIPO1 = "Valencia Basket";
+    static final String EQUIPO2 = "Real Madrid";
+    static final String EQUIPO3 = "Estudiantes";
+    static final String EQUIPO4 = "Unicaja";
+    static final String EQUIPO5 = "Basket Zaragoza";
+    static final String EQUIPO6 = "Real Betis Baloncesto";
 
     //ATRIBUTOS
     private int temporadasExperiencia; //Atributo entero que guardará el numero de temporadas que lleva ejerciendo su puesto de trabajo
@@ -21,6 +27,7 @@ public class CuerpoTecnico extends MiembroClub implements Comparable {
     /*Guardará el equipo anterior en el que ha ejercido su puesto.
                                      En el caso de que sea la primera vez que entrena, guardará "nunca ha ejercido su puesto"*/
     private Jugador[] quintetoInicial = new Jugador[5];
+    
 
     //Constructor
     public CuerpoTecnico(String nombre, String apellidos, String dni, double salario, Fecha fechaAltaClub, int edad,
@@ -30,6 +37,7 @@ public class CuerpoTecnico extends MiembroClub implements Comparable {
         setEquipoProcedencia(equipoProcedencia);
         setTipo(tipo);
         setNumeroLicencia(numeroLicencia);
+        
 
     }
 
@@ -206,4 +214,6 @@ public class CuerpoTecnico extends MiembroClub implements Comparable {
         System.out.println("     "+quintetoInicial[3].getNombre() + " "+quintetoInicial[3].getApellidos() +" #"+quintetoInicial[3].getDorsal() + "          " + quintetoInicial[4].getNombre() + " "+quintetoInicial[4].getApellidos()+" #"+quintetoInicial[4].getDorsal()+"     ");
     }
 
+    
+    
 }
