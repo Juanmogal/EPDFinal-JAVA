@@ -12,7 +12,7 @@ public class Aficionado implements ISocio, Cloneable{
     static final String JUVENIL="juvenil";
     static final String ADULTO="adulto";
     static final String SENIOR="senior";
-    
+    static final String sksksk = "pepito";
     
     //Atributos
     private String nombre;/*nombre del aficionado*/
